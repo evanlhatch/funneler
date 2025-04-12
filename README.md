@@ -17,10 +17,33 @@ Funneler makes it easy to share any directory on your computer with anyone on th
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/funneler.git
+git clone https://github.com/evanlhatch/funneler.git
 cd funneler
+```
 
-# Install the package
+That's it! You can now use the shell-agnostic launcher script:
+
+```bash
+./funneler-launcher.py
+```
+
+The launcher script will automatically create a virtual environment and install all dependencies the first time you run it.
+
+#### Manual Installation (Alternative)
+
+If you prefer to install manually:
+
+```bash
+# Using uv (recommended)
+uv venv
+source .venv/bin/activate  # For Bash/Zsh
+# OR source .venv/bin/activate.fish  # For Fish
+uv pip install -e .
+
+# Using standard pip
+python -m venv .venv
+source .venv/bin/activate  # For Bash/Zsh
+# OR source .venv/bin/activate.fish  # For Fish
 pip install -e .
 ```
 
@@ -32,27 +55,47 @@ pip install -e .
 
 ## Usage
 
-### Using the Wrapper Script
+### Using the Shell-Agnostic Launcher (Recommended)
 
-The easiest way to use Funneler is with the included wrapper script, which automatically handles the virtual environment:
+The easiest way to use Funneler is with the included shell-agnostic launcher script, which works on any system with Python 3.6+ installed:
 
 Share the current directory:
 
 ```bash
-./run-funneler.fish
+# Works on any system with Python 3.6+
+./funneler-launcher.py
 ```
 
 Share a specific directory:
 
 ```bash
-./run-funneler.fish /path/to/directory
+./funneler-launcher.py /path/to/directory
 ```
 
-### Using the Installed Package
+The launcher script automatically:
+- Creates a virtual environment if it doesn't exist
+- Installs the required dependencies
+- Runs the funneler command with the provided arguments
+
+### Using the Fish Shell Wrapper
+
+If you're using the Fish shell, you can also use the included Fish wrapper script:
+
+```fish
+./run-funneler.fish [OPTIONS] [DIRECTORY]
+```
+
+### Using the Installed Package Directly
 
 If you've installed the package, you can use it directly (make sure to activate the virtual environment first):
 
 ```bash
+# For Bash/Zsh
+source .venv/bin/activate
+funneler [OPTIONS] [DIRECTORY]
+deactivate  # when done
+
+# For Fish
 source .venv/bin/activate.fish
 funneler [OPTIONS] [DIRECTORY]
 deactivate  # when done
@@ -68,12 +111,20 @@ deactivate  # when done
 Share the current directory on the default port (8000):
 
 ```bash
+# Shell-agnostic (works everywhere)
+./funneler-launcher.py
+
+# Fish shell
 ./run-funneler.fish
 ```
 
 Share a specific directory on port 8080:
 
 ```bash
+# Shell-agnostic (works everywhere)
+./funneler-launcher.py --port 8080 /path/to/directory
+
+# Fish shell
 ./run-funneler.fish --port 8080 /path/to/directory
 ```
 
