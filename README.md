@@ -1,6 +1,11 @@
 # Funneler
 
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/evanlhatch/funneler)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/evanlhatch/funneler/blob/main/LICENSE)
+
 A simple CLI tool to share directories via Tailscale Funnel.
+
+> **Note:** This is an early development release (0.1.0). While functional, it may have bugs or missing features.
 
 ## Overview
 
